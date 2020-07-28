@@ -1,30 +1,43 @@
 # Introduction 
-This is the RMIS Demo site which will allow a user to log in, get authenticated, and view all Blog Posts from the RMIS Home Blog site.
+This is the RMIS Demo site which will allow a user to log in, get authenticated, view all Blog Posts from the RMIS Home Blog site, and log out.
 The Demo site communicates with a Web API which performs the authentication and fetches the blog post data stored on its SQL server database.
 
 RMIS Blog Demo Site is located at: https://rmis-demo.azurewebsites.net/
+
 Web API is located at: https://rmis-demo-api.azurewebsites.net
 
+# RMIS Web API
+Login
+--------
 To log into the Web API:
+```
 HTTP POST https://rmis-demo-api.azurewebsites.net/api/auth/login
+```
+```
 JSON Body:
 {
     "username":"test",
     "password":"test"
 }
+```
+```
 Returns a JWT or 401 unauthorized:
 {
     "token": "eyJ3bAciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJ0ZXN0IiwibmJmIjoxNTk1ODkyMzg4LCJleHAiOjE1OTU5Nzg3ODgsImlhdCI6MTU5NTg5MjM4OH0.A9ZT-VFtRvQr8EReVuptAgxGUmmMXH3xHK83KI6REXuE7OB8I74_DASd3-kys_IBvsIyRIXJudM3lbCu-ZgJLQ"
 }
-
-
+```
+Blog Posts
+------------
 To fetch Blog Post data as a JSON, append the JWT to the Header:
+```
 HTTP GET https://rmis-demo-api.azurewebsites.net/api/blogs
-
+```
+```
 Headers:
 "Authorization" : "eyJ3bAciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJ0ZXN0IiwibmJmIjoxNTk1ODkyMzg4LCJleHAiOjE1OTU5Nzg3ODgsImlhdCI6MTU5NTg5MjM4OH0.A9ZT-VFtRvQr8EReVuptAgxGUmmMXH3xHK83KI6REXuE7OB8I74_DASd3-kys_IBvsIyRIXJudM3lbCu-ZgJLQ"
 "Content-Type" : "application/json"
-
+```
+```
 Returns a JSON Blog Post list:
 [
     {
@@ -80,3 +93,4 @@ Returns a JSON Blog Post list:
         ]
     },
 ]
+```
