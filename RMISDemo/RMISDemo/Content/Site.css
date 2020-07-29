@@ -2,6 +2,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Lato', sans-serif;
 }
 
 /* Wrapping element */
@@ -28,6 +29,7 @@ textarea {
 }
 
 .blog-post {
+    
     align-items: center;
     text-align: center;
     width: 100%;
@@ -41,6 +43,18 @@ textarea {
     max-width: 400px;
     height: 100%;
     max-height: 400px; 
+}
+
+.blog-post-content {
+    font-size: 16px;
+    color: #333;
+}
+
+.blog-post-date {
+    background-color: #f7f7f7;
+    color: #808080;
+    text-align: left;
+    padding: 10px;
 }
 
 /* Responsive: Portrait tablets and up */

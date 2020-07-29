@@ -110,11 +110,14 @@ namespace RMISDemo
 
         protected void rptrBlogPosts_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType != ListItemType.Item)
+            if (!(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem))
                 return;
 
             // For the repeater blog posts, handle additional items
             BlogPost post = e.Item.DataItem as BlogPost;
+
+            Label lblPostContent = (Label)e.Item.FindControl("lblPostContent");
+            lblPostContent.Text = post.PostContent.Replace("\r\n", "<br />");
 
             // Cycle through all the URLs for this blog post
             foreach (BlogPostUrl url in post.BlogPostUrl)
@@ -130,6 +133,7 @@ namespace RMISDemo
                     if (img.ImageUrl != string.Empty)
                         img = (ImageButton)e.Item.FindControl("imgBlogPost4");
 
+                    img.Visible = true;
                     img.CssClass = "blog-post-image";
                     img.ImageUrl = url.UrlPath;
 
